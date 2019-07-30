@@ -13,7 +13,6 @@ import configureStore from '../store';
 import Head from '../components/Head';
 import DevInfo from '../components/DevInfo';
 
-import AnalyticsHandler from '../handlers/AnalyticsHandler';
 import AuthHandler from '../handlers/AuthHandler';
 import ErrorHandler from '../handlers/ErrorHandler';
 import LoadingHandler from '../handlers/LoadingHandler';
@@ -58,8 +57,6 @@ export class TheApp extends App {
 
                 <SystemMessageHandler>
                   <Component {...pageProps} />
-
-                  <AnalyticsHandler />
 
                   <AuthHandler />
 
