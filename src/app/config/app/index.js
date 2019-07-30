@@ -1,7 +1,6 @@
-// TODO: Customise all of this
 const app = {
-  name: 'NextJS Simple Boilerplate',
-  url: 'https://github.com/AuxStudio/nextjs-simple-boilerplate',
+  name: 'Sniffles Client',
+  url: 'https://github.com/shaunsaker/sniffles-client',
   contactDetails: {
     email: 'sakershaun@gmail.com',
     tel: '+27833771130',

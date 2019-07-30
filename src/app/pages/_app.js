@@ -15,7 +15,6 @@ import DevInfo from '../components/DevInfo';
 
 import AnalyticsHandler from '../handlers/AnalyticsHandler';
 import AuthHandler from '../handlers/AuthHandler';
-import DataSyncingHandler from '../handlers/DataSyncingHandler';
 import ErrorHandler from '../handlers/ErrorHandler';
 import LoadingHandler from '../handlers/LoadingHandler';
 import SystemMessageHandler from '../handlers/SystemMessageHandler';
@@ -63,8 +62,6 @@ export class TheApp extends App {
                   <AnalyticsHandler />
 
                   <AuthHandler />
-
-                  <DataSyncingHandler />
 
                   <LoadingHandler />
 
