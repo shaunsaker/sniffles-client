@@ -1,11 +1,19 @@
+import { colors } from '../../static/styles/styleConstants';
+
 const styles = {
   wrapper: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.secondary,
     zIndex: 1,
   },
   container: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     minHeight: 64,
+  },
+  headingText: {
+    color: 'white',
+  },
+  text: {
+    color: colors.transWhite,
   },
 };
 

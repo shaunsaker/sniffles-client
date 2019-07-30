@@ -5,12 +5,22 @@ import Link from 'next/link';
 import muiStyles from './muiStyles';
 import styles from './styles';
 
+import Typography from '../Typography';
+
 const HeaderBar = () => {
   return (
     <AppBar position="fixed" style={muiStyles.wrapper}>
       <ToolBar style={muiStyles.container}>
         <Link href="/">
-          <img src="/static/images/logo.png" alt="Pep Logo" className="logo-image" />
+          <div>
+            <Typography type="heading" style={muiStyles.headingText}>
+              Sniffles
+            </Typography>
+
+            <Typography type="small" style={muiStyles.text}>
+              Sniff Sniff
+            </Typography>
+          </div>
         </Link>
       </ToolBar>
 
