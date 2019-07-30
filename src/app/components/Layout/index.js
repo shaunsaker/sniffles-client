@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 import HeaderBar from '../HeaderBar';
-import FooterBar from '../FooterBar';
 import DevInfo from '../DevInfo';
 
 const Layout = ({ headerBarProps, children }) => {
@@ -13,10 +12,6 @@ const Layout = ({ headerBarProps, children }) => {
       <HeaderBar {...headerBarProps} />
 
       <div className="content-container">{children}</div>
-
-      <div className="footer-container">
-        <FooterBar />
-      </div>
 
       <div className="dev-info-container">
         <DevInfo />

@@ -26,9 +26,6 @@ const styles = css`
     align-items: stretch;
   }
 
-  .footer-container {
-  }
-
   .dev-info-container {
     position: fixed;
     bottom: 0;
