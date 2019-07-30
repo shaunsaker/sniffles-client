@@ -1,35 +1,27 @@
 import React from 'react';
-import { AppBar, Toolbar as ToolBar } from '@material-ui/core';
-import Link from 'next/link';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import muiStyles from './muiStyles';
-import styles from './styles';
+import HeaderBar from './HeaderBar';
 
-import Typography from '../Typography';
+export class HeaderBarContainer extends React.Component {
+  constructor(props) {
+    super(props);
 
-const HeaderBar = () => {
-  return (
-    <AppBar position="fixed" style={muiStyles.wrapper}>
-      <ToolBar style={muiStyles.container}>
-        <Link href="/">
-          <div>
-            <Typography type="heading" style={muiStyles.headingText}>
-              Sniffles
-            </Typography>
+    this.state = {};
+  }
 
-            <Typography type="small" style={muiStyles.text}>
-              Sniff Sniff
-            </Typography>
-          </div>
-        </Link>
-      </ToolBar>
+  static propTypes = {};
 
-      <style jsx>{styles}</style>
-    </AppBar>
-  );
-};
+  static defaultProps = {};
 
-HeaderBar.propTypes = {};
-HeaderBar.defaultProps = {};
+  render() {
+    return <HeaderBar />;
+  }
+}
 
-export default HeaderBar;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(HeaderBarContainer);

@@ -6,13 +6,13 @@ const styles = {
     zIndex: 1,
   },
   container: {
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     minHeight: 64,
   },
-  headingText: {
+  text: {
     color: 'white',
   },
-  text: {
+  smallText: {
     color: colors.transWhite,
   },
 };
