@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Blank from './Blank';
+import Dashboard from './Dashboard';
 
-export class BlankContainer extends React.Component {
+export class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ export class BlankContainer extends React.Component {
   static defaultProps = {};
 
   render() {
-    return <Blank />;
+    return <Dashboard />;
   }
 }
 
@@ -24,4 +24,4 @@ function mapStateToProps(state) {
   return {};
 }
 
-export default connect(mapStateToProps)(BlankContainer);
+export default connect(mapStateToProps)(DashboardContainer);
