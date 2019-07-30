@@ -13,7 +13,7 @@ const Login = ({ formProps }) => {
     <Layout>
       <div className="container">
         <div className="title-text-container">
-          <Typography type="title">Login</Typography>
+          <Typography type="heading">Login</Typography>
         </div>
 
         <div className="form-container">

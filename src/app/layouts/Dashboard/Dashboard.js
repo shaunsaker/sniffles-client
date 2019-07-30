@@ -11,7 +11,7 @@ const Dashboard = () => {
     <Layout>
       <div className="container">
         <div className="title-text-container">
-          <Typography type="title">Dashboard</Typography>
+          <Typography type="heading">Dashboard</Typography>
         </div>
       </div>
 
