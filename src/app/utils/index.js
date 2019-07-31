@@ -1,5 +1,13 @@
-const utils = {};
+import getDateTime from './getDateTime';
+import getElapsedMinutes from './getElapsedMinutes';
+import getStringPlurality from './getStringPlurality';
 
-export {};
+const utils = {
+  getDateTime,
+  getElapsedMinutes,
+  getStringPlurality,
+};
+
+export { getDateTime, getElapsedMinutes, getStringPlurality };
 
 export default utils;
