@@ -12,13 +12,13 @@ const DeviceItem = ({ macAddress, isOnline, lastSeen, handleClick }) => {
     <Card>
       <ButtonBase style={{ width: '100%' }} onClick={handleClick}>
         <div className="container">
-          <div className="text-container left-text-container">
+          <div className="text-container">
             <Typography type="paragraph" bold>
               {macAddress}
             </Typography>
           </div>
 
-          <div className="text-container right-text-container">
+          <div className="text-container">
             <Typography type="paragraph" color={isOnline ? colors.green : colors.red}>
               {lastSeen}
             </Typography>
