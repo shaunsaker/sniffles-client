@@ -42,7 +42,7 @@ const DeviceItem = ({ name, macAddress, isOnline, lastSeen, handleClick }) => {
       </div>
 
       <div style={HEADERS[4].style}>
-        <IconButton iconName="chevron-right" tooltip="Open" handleClick={handleClick} />
+        <IconButton iconName="chevron-right" tooltip={`Open ${name || macAddress}`} handleClick={handleClick} />
       </div>
 
       <style jsx>{styles}</style>

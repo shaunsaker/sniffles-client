@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action = {}) {
     case 'REMOVE_PENDING_TRANSACTION':
       newState = cloneObject(state);
       newState.pendingTransactions = newState.pendingTransactions.filter((event) => {
-        return event.id !== payload.eventID;
+        return event.id !== payload.eventId;
       });
       return newState;
 

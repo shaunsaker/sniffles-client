@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { convertObjectToArray, sortArrayOfObjectsByKey, getElapsedDays } from 'js-simple-utils';
+
+import { getDateTime } from '../../utils';
 
 import Dashboard from './Dashboard';
 
@@ -8,6 +11,7 @@ export class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onDeviceClick = this.onDeviceClick.bind(this);
     this.syncDevices = this.syncDevices.bind(this);
 
     this.state = {};
@@ -18,6 +22,7 @@ export class DashboardContainer extends React.Component {
      * Connect
      */
     dispatch: PropTypes.func,
+    devices: PropTypes.shape({}),
   };
 
   static defaultProps = {};
@@ -26,11 +31,15 @@ export class DashboardContainer extends React.Component {
     this.syncDevices();
   }
 
+  onDeviceClick(device) {
+    console.log({ device });
+  }
+
   syncDevices() {
     const { dispatch } = this.props;
 
     dispatch({
-      type: 'sync',
+      type: 'syncData',
       payload: {
         url: 'devices',
       },
@@ -45,12 +54,37 @@ export class DashboardContainer extends React.Component {
   }
 
   render() {
-    return <Dashboard />;
+    /*
+     * Convert the devices to an array
+     * Map it to expected values
+     * Sort it by lastSeen
+     */
+    const { devices } = this.props;
+    const devicesArray = sortArrayOfObjectsByKey(
+      convertObjectToArray(devices).map((item) => {
+        const { id, name, macAddress, lastSeen } = item;
+        const isOnline = getElapsedDays(lastSeen) <= 1;
+        const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
+
+        return {
+          id,
+          name,
+          macAddress,
+          isOnline,
+          lastSeen: lastSeenPretty,
+        };
+      }),
+      'lastSeen',
+    );
+
+    return <Dashboard devices={devicesArray} handleDeviceClick={this.onDeviceClick} />;
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  const { devices } = state;
+
+  return { devices };
 }
 
 export default connect(mapStateToProps)(DashboardContainer);

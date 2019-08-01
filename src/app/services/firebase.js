@@ -3,8 +3,7 @@ import { firebase as firebaseConfig } from '../config';
 export default async () => {
   const firebase = await import('firebase/app');
   await import('firebase/auth');
-  await import('firebase/firestore');
-  await import('firebase/storage');
+  await import('firebase/database');
 
   try {
     firebase.initializeApp(firebaseConfig);

@@ -16,6 +16,7 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from '../../services/auth';
+import { syncData } from '../../services/database';
 import {
   addDocument,
   batchUpdate,
@@ -59,6 +60,12 @@ export default function* sagas() {
   yield takeEvery('signInWithEmail', genericSaga, { service: signInWithEmail });
   yield takeEvery('signInWithPhoneNumber', genericSaga, { service: signInWithPhoneNumber });
   yield takeEvery('signOut', genericSaga, { service: signOut });
+
+  // Database
+  yield takeEvery('syncData', eventChannelSaga, {
+    service: syncData,
+    shouldTrackEvent: true,
+  });
 
   // Firestore
   yield takeEvery('addDocument', genericSaga, { service: addDocument, shouldTrackEvent: true });
