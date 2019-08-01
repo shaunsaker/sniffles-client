@@ -6,9 +6,10 @@ const SIZE = rhythm.hz / 2;
 
 const styles = css`
   .container {
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 0 ${rhythm.hz}px;
+    padding: ${rhythm.vt}px ${rhythm.hz}px;
   }
 
   .online-status-indicator-container {
@@ -26,7 +27,7 @@ const styles = css`
 
   @media (max-width: 768px) {
     .container {
-      padding: 0 ${rhythm.hz / 2}px;
+      padding: ${rhythm.vt / 2}px ${rhythm.hz / 2}px;
     }
   }
 `;

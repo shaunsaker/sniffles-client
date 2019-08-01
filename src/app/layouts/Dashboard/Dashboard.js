@@ -32,9 +32,11 @@ const Dashboard = ({ devices, handleDeviceClick }) => {
 
         <div className="items-container">
           {devices &&
-            devices.map((item) => {
+            devices.map((item, index) => {
+              const isOdd = index % 2 !== 0;
+
               return (
-                <div key={item.id} className="item-container">
+                <div key={item.id} className={`item-container ${isOdd ? 'odd-item-container' : ''}`}>
                   <DeviceItem {...item} handleClick={() => handleDeviceClick(item)} />
                 </div>
               );

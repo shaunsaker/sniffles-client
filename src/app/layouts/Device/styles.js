@@ -12,24 +12,28 @@ const styles = css`
   }
 
   .heading-text-container {
-    padding-bottom: ${rhythm.vt}px;
-    border-bottom: 1px solid ${colors.lightGrey};
-    margin-bottom: ${rhythm.vt}px;
+    padding: ${rhythm.vt}px 0;
   }
 
   .section-container {
     margin-bottom: ${rhythm.vt * 2}px;
     background-color: ${colors.lightGrey};
-    padding: ${rhythm.vt}px ${rhythm.hz}px;
+    padding: 0 ${rhythm.hz}px;
   }
 
   .row-container {
     display: flex;
-    margin-bottom: ${rhythm.vt}px;
+    padding: ${rhythm.vt}px ${rhythm.hz}px;
+    margin: 0 -${rhythm.hz}px;
+  }
+
+  .odd-row-container {
+    background-color: white;
   }
 
   .label-text-container {
     flex: 2;
+    margin-right: ${rhythm.hz / 2}px;
   }
 
   .value-text-container {
@@ -37,7 +41,12 @@ const styles = css`
   }
 
   .item-container {
-    margin-bottom: ${rhythm.vt}px;
+    padding: ${rhythm.vt}px ${rhythm.hz}px;
+    margin: 0 -${rhythm.hz}px;
+  }
+
+  .odd-item-container {
+    background-color: white;
   }
 `;
 

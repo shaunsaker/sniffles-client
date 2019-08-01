@@ -33,7 +33,7 @@ const Device = ({
             <Typography type="heading">Details</Typography>
           </div>
 
-          <div className="row-container">
+          <div className="row-container odd-row-container">
             <div className="label-text-container">
               <Typography type="paragraph" bold>
                 Name
@@ -59,7 +59,7 @@ const Device = ({
             </div>
           </div>
 
-          <div className="row-container">
+          <div className="row-container odd-row-container">
             <div className="label-text-container">
               <Typography type="paragraph" bold>
                 Last Seen
@@ -83,7 +83,7 @@ const Device = ({
             </div>
           </div>
 
-          <div className="row-container">
+          <div className="row-container odd-row-container">
             <div className="label-text-container">
               <Typography type="paragraph" bold>
                 Total Times Seen
@@ -102,9 +102,11 @@ const Device = ({
           </div>
 
           {logs &&
-            logs.map((item) => {
+            logs.map((item, index) => {
+              const isOdd = index % 2 === 0;
+
               return (
-                <div key={item.date} className="item-container">
+                <div key={item.date} className={`item-container ${isOdd ? 'odd-item-container' : ''}`}>
                   <Typography type="paragraph">{item.date}</Typography>
                 </div>
               );

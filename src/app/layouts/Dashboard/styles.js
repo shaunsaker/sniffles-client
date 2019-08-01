@@ -15,7 +15,6 @@ const styles = css`
     display: flex;
     padding: ${rhythm.vt}px ${rhythm.hz}px;
     background-color: ${colors.lightGrey};
-    margin-bottom: ${rhythm.vt}px;
   }
 
   .header-item-container {
@@ -26,6 +25,10 @@ const styles = css`
   }
 
   .item-container {
+  }
+
+  .odd-item-container {
+    background-color: ${colors.lightGrey};
   }
 
   @media (max-width: 768px) {
