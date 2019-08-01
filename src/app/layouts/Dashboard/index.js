@@ -83,6 +83,7 @@ export class DashboardContainer extends React.Component {
         };
       }),
       'lastSeen',
+      true,
     );
 
     return <Dashboard devices={devicesArray} handleDeviceClick={this.onDeviceClick} />;
