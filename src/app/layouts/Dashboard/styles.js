@@ -18,10 +18,11 @@ const styles = css`
   }
 
   .header-item-container {
+    text-align: left;
   }
 
   .items-container {
-    overflow: scroll-y;
+    overflow-y: scroll;
   }
 
   .item-container {

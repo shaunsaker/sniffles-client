@@ -12,11 +12,11 @@ const DeviceItem = ({ name, macAddress, isOnline, lastSeen, handleClick }) => {
   return (
     <ButtonBase onClick={handleClick} style={{ width: '100%' }}>
       <div className="container">
-        <div style={HEADERS[0].style}>
+        <div style={HEADERS[0].style} className="item-container">
           <div className={`online-status-indicator ${isOnline ? 'online' : ''}`} />
         </div>
 
-        <div style={HEADERS[1].style}>
+        <div style={HEADERS[1].style} className="item-container">
           <Typography
             type="paragraph"
             bold
@@ -26,13 +26,13 @@ const DeviceItem = ({ name, macAddress, isOnline, lastSeen, handleClick }) => {
           </Typography>
         </div>
 
-        <div style={HEADERS[2].style}>
+        <div style={HEADERS[2].style} className="item-container">
           <Typography type="paragraph" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {macAddress}
           </Typography>
         </div>
 
-        <div style={HEADERS[3].style}>
+        <div style={HEADERS[3].style} className="item-container">
           <Typography
             type="paragraph"
             color={isOnline ? colors.green : colors.red}

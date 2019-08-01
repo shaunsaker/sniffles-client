@@ -12,6 +12,10 @@ const styles = css`
     padding: ${rhythm.vt}px ${rhythm.hz}px;
   }
 
+  .item-container {
+    text-align: left;
+  }
+
   .online-status-indicator-container {
     margin-right: ${rhythm.hz}px;
   }
