@@ -1,7 +1,7 @@
 const fields = [
   {
     name: 'email',
-    type: 'email-address',
+    type: 'email',
     label: 'Email Address',
     variant: 'outlined',
   },

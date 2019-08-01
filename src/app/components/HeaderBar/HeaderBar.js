@@ -25,11 +25,11 @@ const HeaderBar = ({ handleSignOut }) => {
         <Link href="/">
           <div>
             <Typography type="heading" style={muiStyles.text}>
-              Schemake
+              Sniffles
             </Typography>
 
             <Typography type="small" style={muiStyles.smallText}>
-              {/* Sniff Sniff */}
+              Sniff Sniff
             </Typography>
           </div>
         </Link>
