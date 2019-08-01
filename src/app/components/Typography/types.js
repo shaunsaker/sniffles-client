@@ -2,11 +2,11 @@
  * These types directly relate to MUI Typography variants
  */
 const types = {
-  title: 'h2',
-  heading: 'h5',
+  title: 'h4',
+  heading: 'h6',
   paragraph: 'body2',
   small: 'caption',
-  link: 'body1',
+  link: 'body2',
 };
 
 export default types;

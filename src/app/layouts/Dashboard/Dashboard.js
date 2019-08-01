@@ -13,7 +13,7 @@ const Dashboard = ({ devices, handleItemClick }) => {
     <Layout>
       <div className="container">
         <div className="title-text-container">
-          <Typography type="heading">Devices</Typography>
+          <Typography type="title">Devices</Typography>
         </div>
 
         <div className="header-row-container">
