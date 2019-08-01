@@ -11,10 +11,22 @@ export class DeviceContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onNameChange = this.onNameChange.bind(this);
+    this.onNameSubmit = this.onNameSubmit.bind(this);
     this.onNameClick = this.onNameClick.bind(this);
     this.syncDeviceLogs = this.syncDeviceLogs.bind(this);
+    this.setName = this.setName.bind(this);
+    this.saveName = this.saveName.bind(this);
+    this.setEditName = this.setEditName.bind(this);
 
-    this.state = {};
+    this.id = getQueryStringParams(window.location.search).id;
+
+    const { name } = props.device;
+
+    this.state = {
+      name,
+      editName: false,
+    };
   }
 
   static propTypes = {
@@ -36,13 +48,25 @@ export class DeviceContainer extends React.Component {
   static defaultProps = {};
 
   componentDidMount() {
-    const { id } = getQueryStringParams(window.location.search);
+    this.syncDeviceLogs(this.id);
+  }
 
-    this.syncDeviceLogs(id);
+  onNameChange(event) {
+    const { value } = event.target;
+
+    this.setName(value);
+  }
+
+  onNameSubmit(event) {
+    event.preventDefault();
+
+    const { name } = this.state;
+
+    this.saveName(name);
   }
 
   onNameClick() {
-    console.log('CLICK');
+    this.setEditName(true);
   }
 
   syncDeviceLogs(deviceId) {
@@ -67,6 +91,30 @@ export class DeviceContainer extends React.Component {
           },
         ],
       },
+    });
+  }
+
+  setName(name) {
+    this.setState({
+      name,
+    });
+  }
+
+  saveName(name) {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: 'updateData',
+      payload: {
+        url: `devices/${this.id}`,
+        data: { name },
+      },
+    });
+  }
+
+  setEditName(editName) {
+    this.setState({
+      editName,
     });
   }
 
@@ -104,6 +152,20 @@ export class DeviceContainer extends React.Component {
       : null;
     const totalTimesSeen = logs ? logsArray.length : null;
 
+    /*
+     * Attach editNameProps if no name or name was clicked
+     */
+    let editNameProps;
+    const { name: stateName, editName } = this.state;
+
+    if (editName || !name) {
+      editNameProps = {
+        value: stateName,
+        handleChange: this.onNameChange,
+        handleSubmit: this.onNameSubmit,
+      };
+    }
+
     return (
       <Device
         macAddress={macAddress}
@@ -114,6 +176,7 @@ export class DeviceContainer extends React.Component {
         timesSeenToday={timesSeenToday}
         totalTimesSeen={totalTimesSeen}
         logs={logsArray}
+        editNameProps={editNameProps}
         handleNameClick={this.onNameClick}
       />
     );

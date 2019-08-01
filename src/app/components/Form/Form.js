@@ -19,11 +19,7 @@ const Form = ({
 }) => {
   const secondaryButtonComponent = secondaryButton && (
     <div className="secondary-button-container">
-      <PrimaryButton
-        secondary
-        disabled={secondaryButton.disabled}
-        handleClick={secondaryButton.handleClick}
-      >
+      <PrimaryButton secondary disabled={secondaryButton.disabled} handleClick={secondaryButton.handleClick}>
         {secondaryButton.text}
       </PrimaryButton>
 
@@ -110,16 +106,7 @@ Form.propTypes = {
   fields: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      type: PropTypes.oneOf([
-        'text',
-        'number',
-        'email',
-        'password',
-        'date',
-        'tel',
-        'file',
-        'select',
-      ]),
+      type: PropTypes.oneOf(['text', 'number', 'email', 'password', 'date', 'tel', 'file', 'select']),
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       label: PropTypes.string,
       required: PropTypes.bool,

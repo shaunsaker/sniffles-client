@@ -52,4 +52,17 @@ storiesOf('Layouts|Device', module)
       logs={logs}
       handleNameClick={handleNameClick}
     />
+  ))
+  .add('editing name', () => (
+    <Device
+      macAddress={macAddress}
+      isOnline
+      dateCreated={dateCreated}
+      lastSeen={lastSeen}
+      timesSeenToday={timesSeenToday}
+      totalTimesSeen={totalTimesSeen}
+      logs={logs}
+      editingNameProps
+      handleNameClick={handleNameClick}
+    />
   ));

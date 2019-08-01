@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonBase } from '@material-ui/core';
+import { ButtonBase, TextField } from '@material-ui/core';
 
 import styles from './styles';
 import { colors } from '../../static/styles/styleConstants';
@@ -17,8 +17,27 @@ const Device = ({
   timesSeenToday,
   totalTimesSeen,
   logs,
+  editNameProps,
   handleNameClick,
 }) => {
+  const nameComponent = editNameProps ? (
+    <form onSubmit={editNameProps.handleSubmit} className="editing-name-container">
+      <TextField
+        type="text"
+        name="name"
+        placeholder="Add Device Name"
+        value={editNameProps.value}
+        onChange={editNameProps.handleChange}
+        style={{ marginTop: -6 }}
+        inputProps={{ style: { fontSize: 14 } }}
+      />
+    </form>
+  ) : (
+    <ButtonBase onClick={handleNameClick}>
+      <Typography type="link">{name}</Typography>
+    </ButtonBase>
+  );
+
   return (
     <Layout>
       <div className="container">
@@ -40,11 +59,7 @@ const Device = ({
               </Typography>
             </div>
 
-            <div className="value-text-container">
-              <ButtonBase onClick={handleNameClick}>
-                <Typography type="link">{name || 'Add Device Name'}</Typography>
-              </ButtonBase>
-            </div>
+            <div className="value-text-container">{nameComponent}</div>
           </div>
 
           <div className="row-container">
@@ -132,6 +147,11 @@ Device.propTypes = {
       date: PropTypes.string,
     }),
   ),
+  editNameProps: PropTypes.shape({
+    value: PropTypes.string,
+    handleChange: PropTypes.func,
+    handleSubmit: PropTypes.func,
+  }),
   handleNameClick: PropTypes.func,
 };
 Device.defaultProps = {};

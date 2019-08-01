@@ -16,7 +16,7 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from '../../services/auth';
-import { syncData } from '../../services/database';
+import { updateData, syncData } from '../../services/database';
 import {
   addDocument,
   batchUpdate,
@@ -62,6 +62,10 @@ export default function* sagas() {
   yield takeEvery('signOut', genericSaga, { service: signOut });
 
   // Database
+  yield takeEvery('updateData', genericSaga, {
+    service: updateData,
+    shouldTrackEvent: true,
+  });
   yield takeEvery('syncData', eventChannelSaga, {
     service: syncData,
     shouldTrackEvent: true,
