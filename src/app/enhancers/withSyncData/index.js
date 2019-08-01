@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { diff } from 'deep-diff';
+import diff from 'deep-diff';
 
 export default (ComposedComponent) => {
   class withSyncData extends React.Component {
@@ -56,11 +56,7 @@ export default (ComposedComponent) => {
        * Sync it
        */
       const { syncedTransactions } = this.props;
-      const hasSyncedOnTransaction = syncedTransactions.filter(
-        (item) => !diff(item, transaction),
-      )[0]
-        ? true
-        : false;
+      const hasSyncedOnTransaction = syncedTransactions.filter((item) => !diff(item, transaction))[0] ? true : false;
 
       if (transaction.isUnique || !hasSyncedOnTransaction) {
         const { isSyncing } = this.props;
@@ -89,7 +85,7 @@ export default (ComposedComponent) => {
       const { dispatch } = this.props;
 
       dispatch({
-        type: 'sync',
+        type: 'syncData',
         payload: {
           url,
           queries,
@@ -124,9 +120,7 @@ export default (ComposedComponent) => {
     /*
      * Get the pending transactions that are sync/fetch actions
      */
-    const hasPendingTransactions = appState.pendingTransactions.filter(
-      (item) => item.action.type === 'sync',
-    ).length
+    const hasPendingTransactions = appState.pendingTransactions.filter((item) => item.action.type === 'sync').length
       ? true
       : false;
     const hasError = appState.systemMessage.variant === 'error' ? true : false;

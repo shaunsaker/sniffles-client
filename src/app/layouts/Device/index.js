@@ -7,6 +7,8 @@ import { getQueryStringParams, getDateTime } from '../../utils';
 
 import Device from './Device';
 
+import withSyncData from '../../enhancers/withSyncData';
+
 export class DeviceContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +45,11 @@ export class DeviceContainer extends React.Component {
     logs: PropTypes.shape({
       date: PropTypes.number,
     }),
+
+    /*
+     * withSyncData
+     */
+    syncData: PropTypes.func,
   };
 
   static defaultProps = {};
@@ -70,27 +77,22 @@ export class DeviceContainer extends React.Component {
   }
 
   syncDeviceLogs(deviceId) {
-    const { dispatch } = this.props;
+    const { syncData } = this.props;
 
-    dispatch({
-      type: 'syncData',
-      payload: {
-        url: 'log',
-        queries: {
-          orderByChild: 'macAddress',
-          equalTo: deviceId,
-        },
+    syncData({
+      url: 'log',
+      queries: {
+        orderByChild: 'macAddress',
+        equalTo: deviceId,
       },
-      meta: {
-        nextActions: [
-          {
-            type: 'SET_DEVICE_LOGS',
-            payload: {
-              deviceId,
-            },
+      nextActions: [
+        {
+          type: 'SET_DEVICE_LOGS',
+          payload: {
+            deviceId,
           },
-        ],
-      },
+        },
+      ],
     });
   }
 
@@ -207,4 +209,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(DeviceContainer);
+export default withSyncData(connect(mapStateToProps)(DeviceContainer));

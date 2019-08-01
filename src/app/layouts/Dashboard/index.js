@@ -8,6 +8,8 @@ import { getDateTime } from '../../utils';
 
 import Dashboard from './Dashboard';
 
+import withSyncData from '../../enhancers/withSyncData';
+
 export class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -22,8 +24,12 @@ export class DashboardContainer extends React.Component {
     /*
      * Connect
      */
-    dispatch: PropTypes.func,
     devices: PropTypes.shape({}),
+
+    /*
+     * withSyncData
+     */
+    syncData: PropTypes.func,
   };
 
   static defaultProps = {};
@@ -44,20 +50,15 @@ export class DashboardContainer extends React.Component {
   }
 
   syncDevices() {
-    const { dispatch } = this.props;
+    const { syncData } = this.props;
 
-    dispatch({
-      type: 'syncData',
-      payload: {
-        url: 'devices',
-      },
-      meta: {
-        nextActions: [
-          {
-            type: 'SET_DEVICES',
-          },
-        ],
-      },
+    syncData({
+      url: 'devices',
+      nextActions: [
+        {
+          type: 'SET_DEVICES',
+        },
+      ],
     });
   }
 
@@ -68,23 +69,25 @@ export class DashboardContainer extends React.Component {
      * Sort it by lastSeen
      */
     const { devices } = this.props;
-    const devicesArray = sortArrayOfObjectsByKey(
-      convertObjectToArray(devices).map((item) => {
-        const { id, name, macAddress, lastSeen } = item;
-        const isOnline = getElapsedDays(lastSeen) <= 1;
-        const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
+    const devicesArray = devices
+      ? sortArrayOfObjectsByKey(
+          convertObjectToArray(devices).map((item) => {
+            const { id, name, macAddress, lastSeen } = item;
+            const isOnline = getElapsedDays(lastSeen) <= 1;
+            const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
-        return {
-          id,
-          name,
-          macAddress,
-          isOnline,
-          lastSeen: lastSeenPretty,
-        };
-      }),
-      'lastSeen',
-      true,
-    );
+            return {
+              id,
+              name,
+              macAddress,
+              isOnline,
+              lastSeen: lastSeenPretty,
+            };
+          }),
+          'lastSeen',
+          true,
+        )
+      : [];
 
     return <Dashboard devices={devicesArray} handleDeviceClick={this.onDeviceClick} />;
   }
@@ -96,4 +99,4 @@ function mapStateToProps(state) {
   return { devices };
 }
 
-export default connect(mapStateToProps)(DashboardContainer);
+export default withSyncData(connect(mapStateToProps)(DashboardContainer));
