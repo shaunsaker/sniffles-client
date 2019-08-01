@@ -20,14 +20,21 @@ export class HeaderBarContainer extends React.Component {
      * Connect
      */
     dispatch: PropTypes.func,
-    authenticated: PropTypes.bool,
+    authenticated: PropTypes.string, // uid
   };
 
   static defaultProps = {};
 
   onSignOut() {
     this.signOut();
-    Router.replace('/login');
+
+    /*
+     * NOTE: It's important that this redirect happens after sign out
+     * So that the componentDidMount in Login does not redirect "here"
+     */
+    setTimeout(() => {
+      Router.replace('/login');
+    }, 500);
   }
 
   signOut() {
@@ -48,8 +55,7 @@ export class HeaderBarContainer extends React.Component {
 
 function mapStateToProps(state) {
   const { user } = state;
-  const { email } = user;
-  const authenticated = email ? true : false;
+  const { uid: authenticated } = user;
 
   return {
     authenticated,

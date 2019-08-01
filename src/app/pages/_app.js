@@ -16,6 +16,7 @@ import DevInfo from '../components/DevInfo';
 import AuthHandler from '../handlers/AuthHandler';
 import ErrorHandler from '../handlers/ErrorHandler';
 import LoadingHandler from '../handlers/LoadingHandler';
+import RedirectHandler from '../handlers/RedirectHandler';
 import SystemMessageHandler from '../handlers/SystemMessageHandler';
 
 export class TheApp extends App {
@@ -56,7 +57,9 @@ export class TheApp extends App {
                 </style>
 
                 <SystemMessageHandler>
-                  <Component {...pageProps} />
+                  <RedirectHandler>
+                    <Component {...pageProps} />
+                  </RedirectHandler>
 
                   <AuthHandler />
 

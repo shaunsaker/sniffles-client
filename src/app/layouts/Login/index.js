@@ -21,7 +21,7 @@ export class LoginContainer extends React.Component {
      * Connect
      */
     dispatch: PropTypes.func,
-    authenticated: PropTypes.bool,
+    authenticated: PropTypes.string, // uid
   };
 
   static defaultProps = {};
@@ -84,8 +84,7 @@ export class LoginContainer extends React.Component {
 
 function mapStateToProps(state) {
   const { user } = state;
-  const { email } = user;
-  const authenticated = email ? true : false;
+  const { uid: authenticated } = user;
 
   return {
     authenticated,

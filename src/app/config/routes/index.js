@@ -8,10 +8,20 @@ const getTitle = (page) => {
 };
 
 const routes = {
-  home: {
-    title: getTitle('Home'),
+  login: {
+    title: getTitle('Login'),
     description: SEO.description,
-    href: '/',
+    href: '/login',
+  },
+  dashboard: {
+    title: getTitle('Dashboard'),
+    description: SEO.description,
+    href: '/dashboard',
+  },
+  devic: {
+    title: getTitle('Device'),
+    description: SEO.description,
+    href: '/device',
   },
 };
 
