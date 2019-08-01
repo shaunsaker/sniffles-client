@@ -1,9 +1,11 @@
 import css from 'styled-jsx/css';
 
-import { rhythm } from '../../static/styles/styleConstants';
+import { colors, rhythm } from '../../static/styles/styleConstants';
 
 const styles = css`
   .container {
+    background-color: ${colors.lightGrey};
+    padding: ${rhythm.vt * 2}px ${rhythm.hz}px;
   }
 
   .title-text-container {
