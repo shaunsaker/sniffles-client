@@ -22,8 +22,8 @@ const devices = [
     id: '2',
   },
 ];
-const handleItemClick = console.log;
+const handleDeviceClick = console.log;
 
 storiesOf('Layouts|Dashboard', module).add('default', () => (
-  <Dashboard devices={devices} handleItemClick={handleItemClick} />
+  <Dashboard devices={devices} handleDeviceClick={handleDeviceClick} />
 ));

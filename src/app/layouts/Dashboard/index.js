@@ -8,12 +8,41 @@ export class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    this.syncDevices = this.syncDevices.bind(this);
+
     this.state = {};
   }
 
-  static propTypes = {};
+  static propTypes = {
+    /*
+     * Connect
+     */
+    dispatch: PropTypes.func,
+  };
 
   static defaultProps = {};
+
+  componentDidMount() {
+    this.syncDevices();
+  }
+
+  syncDevices() {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: 'sync',
+      payload: {
+        url: 'devices',
+      },
+      meta: {
+        nextActions: [
+          {
+            type: 'SET_DEVICES',
+          },
+        ],
+      },
+    });
+  }
 
   render() {
     return <Dashboard />;

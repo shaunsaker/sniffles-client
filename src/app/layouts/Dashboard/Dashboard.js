@@ -8,7 +8,7 @@ import Layout from '../../components/Layout';
 import Typography from '../../components/Typography';
 import DeviceItem from './DeviceItem';
 
-const Dashboard = ({ devices, handleItemClick }) => {
+const Dashboard = ({ devices, handleDeviceClick }) => {
   return (
     <Layout>
       <div className="container">
@@ -35,7 +35,7 @@ const Dashboard = ({ devices, handleItemClick }) => {
             devices.map((item) => {
               return (
                 <div key={item.id} className="item-container">
-                  <DeviceItem {...item} handleClick={() => handleItemClick(item)} />
+                  <DeviceItem {...item} handleClick={() => handleDeviceClick(item)} />
                 </div>
               );
             })}
@@ -53,7 +53,7 @@ Dashboard.propTypes = {
       id: PropTypes.string,
     }),
   ),
-  handleItemClick: PropTypes.func,
+  handleDeviceClick: PropTypes.func,
 };
 Dashboard.defaultProps = {};
 
