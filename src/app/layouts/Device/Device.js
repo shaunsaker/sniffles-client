@@ -4,6 +4,7 @@ import { ButtonBase, TextField } from '@material-ui/core';
 
 import styles from './styles';
 import { colors } from '../../static/styles/styleConstants';
+import HEADERS from './headers';
 
 import Layout from '../../components/Layout';
 import Typography from '../../components/Typography';
@@ -16,6 +17,7 @@ const Device = ({
   lastSeen,
   timesSeenToday,
   totalTimesSeen,
+  averageRssi,
   logs,
   editNameProps,
   handleNameClick,
@@ -109,6 +111,18 @@ const Device = ({
               <Typography type="paragraph">{totalTimesSeen}</Typography>
             </div>
           </div>
+
+          <div className="row-container">
+            <div className="label-text-container">
+              <Typography type="paragraph" bold>
+                Average Rssi
+              </Typography>
+            </div>
+
+            <div className="value-text-container">
+              <Typography type="paragraph">{averageRssi}</Typography>
+            </div>
+          </div>
         </div>
 
         <div className="section-container">
@@ -116,13 +130,33 @@ const Device = ({
             <Typography type="heading">Logs</Typography>
           </div>
 
+          <div className="header-row-container">
+            {HEADERS.map((item, index) => {
+              const { name: headerName, style } = item;
+
+              return (
+                <div key={headerName || index} style={style} className="header-item-container">
+                  <Typography type="paragraph" bold>
+                    {headerName}
+                  </Typography>
+                </div>
+              );
+            })}
+          </div>
+
           {logs &&
             logs.map((item, index) => {
               const isOdd = index % 2 === 0;
 
               return (
-                <div key={item.date} className={`item-container ${isOdd ? 'odd-item-container' : ''}`}>
-                  <Typography type="paragraph">{item.date}</Typography>
+                <div key={item.date} className={`row-container ${isOdd ? 'odd-row-container' : ''}`}>
+                  <div style={HEADERS[0].style} className="item-container">
+                    <Typography type="paragraph">{item.rssi}</Typography>
+                  </div>
+
+                  <div style={HEADERS[1].style} className="item-container">
+                    <Typography type="paragraph">{item.date}</Typography>
+                  </div>
                 </div>
               );
             })}
@@ -142,9 +176,11 @@ Device.propTypes = {
   lastSeen: PropTypes.string,
   timesSeenToday: PropTypes.number,
   totalTimesSeen: PropTypes.number,
+  averageRssi: PropTypes.number,
   logs: PropTypes.arrayOf(
     PropTypes.shape({
       date: PropTypes.string,
+      rssi: PropTypes.number,
     }),
   ),
   editNameProps: PropTypes.shape({

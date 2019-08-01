@@ -131,12 +131,13 @@ export class DeviceContainer extends React.Component {
      * Map to the object we need
      */
     const logsArray = logs
-      ? sortArrayOfObjectsByKey(convertObjectToArray(logs), 'date', true).map((item) => {
-          const { date } = item;
+      ? sortArrayOfObjectsByKey(convertObjectToArray(logs), 'timeStamp').map((item) => {
+          const { date, rssi } = item;
           const prettyDate = getDateTime(date);
 
           return {
             date: prettyDate,
+            rssi,
             timeStamp: date,
           };
         })
@@ -151,6 +152,16 @@ export class DeviceContainer extends React.Component {
         }).length
       : null;
     const totalTimesSeen = logs ? logsArray.length : null;
+    const logsWithRssi = logsArray.filter((item) => item.rssi);
+    const averageRssi = logs
+      ? Math.round(
+          logsWithRssi.reduce((total, item) => {
+            const { rssi } = item;
+
+            return total + rssi;
+          }, 0) / logsWithRssi.length,
+        )
+      : null;
 
     /*
      * Attach editNameProps if no name or name was clicked
@@ -175,6 +186,7 @@ export class DeviceContainer extends React.Component {
         lastSeen={lastSeenPretty}
         timesSeenToday={timesSeenToday}
         totalTimesSeen={totalTimesSeen}
+        averageRssi={averageRssi}
         logs={logsArray}
         editNameProps={editNameProps}
         handleNameClick={this.onNameClick}

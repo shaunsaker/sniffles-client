@@ -15,6 +15,15 @@ const styles = css`
     padding: ${rhythm.vt}px 0;
   }
 
+  .header-row-container {
+    display: flex;
+    padding-bottom: ${rhythm.vt}px;
+  }
+
+  .header-item-container {
+    text-align: left;
+  }
+
   .section-container {
     margin-bottom: ${rhythm.vt * 2}px;
     background-color: ${colors.lightGrey};
@@ -41,12 +50,6 @@ const styles = css`
   }
 
   .item-container {
-    padding: ${rhythm.vt}px ${rhythm.hz}px;
-    margin: 0 -${rhythm.hz}px;
-  }
-
-  .odd-item-container {
-    background-color: white;
   }
 `;
 
