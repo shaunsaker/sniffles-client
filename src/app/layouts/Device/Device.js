@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ButtonBase } from '@material-ui/core';
 
 import styles from './styles';
 import { colors } from '../../static/styles/styleConstants';
@@ -7,7 +8,17 @@ import { colors } from '../../static/styles/styleConstants';
 import Layout from '../../components/Layout';
 import Typography from '../../components/Typography';
 
-const Device = ({ macAddress, name, isOnline, dateCreated, lastSeen, timesSeenToday, handleNameClick }) => {
+const Device = ({
+  macAddress,
+  name,
+  isOnline,
+  dateCreated,
+  lastSeen,
+  timesSeenToday,
+  totalTimesSeen,
+  logs,
+  handleNameClick,
+}) => {
   return (
     <Layout>
       <div className="container">
@@ -30,7 +41,9 @@ const Device = ({ macAddress, name, isOnline, dateCreated, lastSeen, timesSeenTo
             </div>
 
             <div className="value-text-container">
-              <Typography type="link">{name || 'Add Device Name'}</Typography>
+              <ButtonBase onClick={handleNameClick}>
+                <Typography type="link">{name || 'Add Device Name'}</Typography>
+              </ButtonBase>
             </div>
           </div>
 
@@ -69,12 +82,33 @@ const Device = ({ macAddress, name, isOnline, dateCreated, lastSeen, timesSeenTo
               <Typography type="paragraph">{timesSeenToday}</Typography>
             </div>
           </div>
+
+          <div className="row-container">
+            <div className="label-text-container">
+              <Typography type="paragraph" bold>
+                Total Times Seen
+              </Typography>
+            </div>
+
+            <div className="value-text-container">
+              <Typography type="paragraph">{totalTimesSeen}</Typography>
+            </div>
+          </div>
         </div>
 
         <div className="section-container">
           <div className="heading-text-container">
             <Typography type="heading">Log</Typography>
           </div>
+
+          {logs &&
+            logs.map((item) => {
+              return (
+                <div key={item.date} className="item-container">
+                  <Typography type="paragraph">{item.date}</Typography>
+                </div>
+              );
+            })}
         </div>
       </div>
 
@@ -90,6 +124,12 @@ Device.propTypes = {
   dateCreated: PropTypes.string,
   lastSeen: PropTypes.string,
   timesSeenToday: PropTypes.number,
+  totalTimesSeen: PropTypes.number,
+  logs: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string,
+    }),
+  ),
   handleNameClick: PropTypes.func,
 };
 Device.defaultProps = {};

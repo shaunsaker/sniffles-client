@@ -7,10 +7,12 @@ const styles = css`
   }
 
   .title-text-container {
-    margin-bottom: ${rhythm.vt}px;
+    margin-bottom: ${rhythm.vt * 2}px;
   }
 
   .heading-text-container {
+    padding-bottom: ${rhythm.vt}px;
+    border-bottom: 1px solid ${colors.lightGrey};
     margin-bottom: ${rhythm.vt}px;
   }
 
@@ -31,6 +33,10 @@ const styles = css`
 
   .value-text-container {
     flex: 8;
+  }
+
+  .item-container {
+    margin-bottom: ${rhythm.vt}px;
   }
 `;
 

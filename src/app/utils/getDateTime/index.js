@@ -4,7 +4,11 @@ import getElapsedMinutes from '../getElapsedMinutes';
 import getStringPlurality from '../getStringPlurality';
 
 const getDateTime = (date) => {
-  const prettyDate = getPrettyDate(date, true);
+  const dateObject = new Date(date);
+  const hours = dateObject.getHours();
+  const minutes = dateObject.getMinutes();
+  const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+  const prettyDate = getPrettyDate(date, true, true);
   const elapsedDays = Math.round(getElapsedDays(date));
   let elapsedText;
 
@@ -26,7 +30,7 @@ const getDateTime = (date) => {
     elapsedText = `${elapsedDays} day${getStringPlurality(elapsedDays)} ago`;
   }
 
-  const dateTime = `${prettyDate} (${elapsedText})`;
+  const dateTime = `${time} | ${prettyDate} (${elapsedText})`;
 
   return dateTime;
 };

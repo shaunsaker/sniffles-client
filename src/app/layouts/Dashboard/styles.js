@@ -7,7 +7,7 @@ const styles = css`
   }
 
   .title-text-container {
-    margin-bottom: ${rhythm.vt}px;
+    margin-bottom: ${rhythm.vt * 2}px;
   }
 
   .header-row-container {
