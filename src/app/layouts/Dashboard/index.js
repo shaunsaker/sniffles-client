@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { convertObjectToArray, sortArrayOfObjectsByKey, getElapsedDays } from 'js-simple-utils';
+import Router from 'next/router';
 
 import { getDateTime } from '../../utils';
 
@@ -32,7 +33,14 @@ export class DashboardContainer extends React.Component {
   }
 
   onDeviceClick(device) {
-    console.log({ device });
+    const { id } = device;
+
+    Router.push({
+      pathname: '/device',
+      query: {
+        id,
+      },
+    });
   }
 
   syncDevices() {

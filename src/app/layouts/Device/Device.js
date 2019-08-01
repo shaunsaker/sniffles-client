@@ -98,7 +98,7 @@ const Device = ({
 
         <div className="section-container">
           <div className="heading-text-container">
-            <Typography type="heading">Log</Typography>
+            <Typography type="heading">Logs</Typography>
           </div>
 
           {logs &&

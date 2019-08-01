@@ -1,10 +1,14 @@
 import getRef from '../getRef';
 
-export default ({ url }, callback) => {
+export default ({ url, queries }, callback) => {
   return new Promise(async (resolve) => {
-    const ref = await getRef(url);
+    let ref = await getRef(url);
 
-    // TODO: Queries
+    if (queries) {
+      const { orderByChild, equalTo } = queries;
+
+      ref = ref.orderByChild(orderByChild).equalTo(equalTo);
+    }
 
     const unsubscribe = ref.on(
       'value',

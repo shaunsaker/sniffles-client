@@ -7,7 +7,10 @@ const getDateTime = (date) => {
   const dateObject = new Date(date);
   const hours = dateObject.getHours();
   const minutes = dateObject.getMinutes();
-  const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+  const seconds = dateObject.getSeconds();
+  const time = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${
+    seconds < 10 ? '0' : ''
+  }${seconds}`;
   const prettyDate = getPrettyDate(date, true, true);
   const elapsedDays = Math.round(getElapsedDays(date));
   let elapsedText;

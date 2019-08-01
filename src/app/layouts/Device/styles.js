@@ -4,6 +4,7 @@ import { colors, rhythm } from '../../static/styles/styleConstants';
 
 const styles = css`
   .container {
+    flex: 1;
   }
 
   .title-text-container {
