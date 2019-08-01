@@ -1,5 +1,5 @@
 const sizes = {
-  maxContentWidth: 750,
+  maxContentWidth: 940,
 };
 
 export default sizes;

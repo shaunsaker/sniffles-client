@@ -6,25 +6,39 @@ import HEADERS from './headers';
 
 import Layout from '../../components/Layout';
 import Typography from '../../components/Typography';
+import DeviceItem from './DeviceItem';
 
-const Dashboard = () => {
+const Dashboard = ({ devices, handleItemClick }) => {
   return (
     <Layout>
       <div className="container">
         <div className="title-text-container">
-          <Typography type="heading">Dashboard</Typography>
+          <Typography type="heading">Devices</Typography>
         </div>
 
         <div className="header-row-container">
-          {HEADERS.map((item) => {
+          {HEADERS.map((item, index) => {
+            const { name, style } = item;
+
             return (
-              <div key={item} className="header-item-container">
+              <div key={name || index} style={style} className="header-item-container">
                 <Typography type="paragraph" bold>
-                  {item}
+                  {name}
                 </Typography>
               </div>
             );
           })}
+        </div>
+
+        <div className="items-container">
+          {devices &&
+            devices.map((item) => {
+              return (
+                <div key={item.id} className="item-container">
+                  <DeviceItem {...item} handleClick={() => handleItemClick(item)} />
+                </div>
+              );
+            })}
         </div>
       </div>
 
@@ -33,7 +47,14 @@ const Dashboard = () => {
   );
 };
 
-Dashboard.propTypes = {};
+Dashboard.propTypes = {
+  devices: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  ),
+  handleItemClick: PropTypes.func,
+};
 Dashboard.defaultProps = {};
 
 export default Dashboard;

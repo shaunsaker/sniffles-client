@@ -8,7 +8,7 @@ const styles = css`
   .container {
     display: flex;
     align-items: center;
-    padding: ${rhythm.vt}px ${rhythm.hz}px;
+    padding: 0 ${rhythm.hz}px;
   }
 
   .online-status-indicator-container {
@@ -24,8 +24,10 @@ const styles = css`
     background-color: ${colors.green};
   }
 
-  .text-container {
-    margin-right: ${rhythm.hz}px;
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 ${rhythm.hz / 2}px;
+    }
   }
 `;
 

@@ -7,18 +7,30 @@ const styles = css`
   }
 
   .title-text-container {
-    margin-bottom: ${rhythm.vt * 2}px;
+    margin-bottom: ${rhythm.vt}px;
   }
 
   .header-row-container {
     display: flex;
-    justify-content: space-between;
     padding: ${rhythm.vt}px ${rhythm.hz}px;
     background-color: ${colors.lightGrey};
     margin-bottom: ${rhythm.vt}px;
   }
 
   .header-item-container {
+  }
+
+  .items-container {
+    overflow: scroll-y;
+  }
+
+  .item-container {
+  }
+
+  @media (max-width: 768px) {
+    .header-row-container {
+      padding: ${rhythm.vt}px ${rhythm.hz / 2}px;
+    }
   }
 `;
 

@@ -15,18 +15,28 @@ const DeviceItem = ({ name, macAddress, isOnline, lastSeen, handleClick }) => {
         <div className={`online-status-indicator ${isOnline ? 'online' : ''}`} />
       </div>
 
-      <div style={HEADERS[1].style} className="text-container">
-        <Typography type="paragraph" bold>
+      <div style={HEADERS[1].style}>
+        <Typography
+          type="paragraph"
+          bold
+          style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+        >
           {name}
         </Typography>
       </div>
 
-      <div style={HEADERS[2].style} className="text-container">
-        <Typography type="paragraph">{macAddress}</Typography>
+      <div style={HEADERS[2].style}>
+        <Typography type="paragraph" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {macAddress}
+        </Typography>
       </div>
 
-      <div style={HEADERS[3].style} className="text-container">
-        <Typography type="paragraph" color={isOnline ? colors.green : colors.red}>
+      <div style={HEADERS[3].style}>
+        <Typography
+          type="paragraph"
+          color={isOnline ? colors.green : colors.red}
+          style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+        >
           {lastSeen}
         </Typography>
       </div>
