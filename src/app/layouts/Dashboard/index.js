@@ -70,23 +70,19 @@ export class DashboardContainer extends React.Component {
      */
     const { devices } = this.props;
     const devicesArray = devices
-      ? sortArrayOfObjectsByKey(
-          convertObjectToArray(devices).map((item) => {
-            const { id, name, macAddress, lastSeen } = item;
-            const isOnline = getElapsedDays(lastSeen) <= 1;
-            const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
+      ? sortArrayOfObjectsByKey(convertObjectToArray(devices), 'lastSeen', true).map((item) => {
+          const { id, name, macAddress, lastSeen } = item;
+          const isOnline = getElapsedDays(lastSeen) <= 1;
+          const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
-            return {
-              id,
-              name,
-              macAddress,
-              isOnline,
-              lastSeen: lastSeenPretty,
-            };
-          }),
-          'lastSeen',
-          true,
-        )
+          return {
+            id,
+            name,
+            macAddress,
+            isOnline,
+            lastSeen: lastSeenPretty,
+          };
+        })
       : [];
 
     return <Dashboard devices={devicesArray} handleDeviceClick={this.onDeviceClick} />;
