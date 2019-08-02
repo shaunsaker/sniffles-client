@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { convertObjectToArray, sortArrayOfObjectsByKey, getElapsedDays } from 'js-simple-utils';
+import { convertObjectToArray, sortArrayOfObjectsByKey, getElapsedHours } from 'js-simple-utils';
 import Router from 'next/router';
 
 import { getDateTime } from '../../utils';
@@ -72,7 +72,7 @@ export class DashboardContainer extends React.Component {
     const devicesArray = devices
       ? sortArrayOfObjectsByKey(convertObjectToArray(devices), 'lastSeen', true).map((item) => {
           const { id, name, macAddress, lastSeen } = item;
-          const isOnline = getElapsedDays(lastSeen) <= 1;
+          const isOnline = getElapsedHours(lastSeen) <= 1;
           const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
           return {

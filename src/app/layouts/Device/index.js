@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { convertObjectToArray, sortArrayOfObjectsByKey, getElapsedDays } from 'js-simple-utils';
+import { convertObjectToArray, sortArrayOfObjectsByKey, getElapsedHours } from 'js-simple-utils';
 
 import { getQueryStringParams, getDateTime } from '../../utils';
 
@@ -123,7 +123,7 @@ export class DeviceContainer extends React.Component {
   render() {
     const { device, logs } = this.props;
     const { name, macAddress, dateCreated, lastSeen } = device;
-    const isOnline = getElapsedDays(lastSeen) <= 1;
+    const isOnline = getElapsedHours(lastSeen) <= 1;
     const dateCreatedPretty = dateCreated ? getDateTime(dateCreated) : '';
     const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
@@ -148,7 +148,7 @@ export class DeviceContainer extends React.Component {
     const timesSeenToday = logs
       ? logsArray.filter((item) => {
           const { timeStamp } = item;
-          const elapsedDays = getElapsedDays(timeStamp);
+          const elapsedDays = getElapsedHours(timeStamp);
 
           return elapsedDays <= 1;
         }).length
