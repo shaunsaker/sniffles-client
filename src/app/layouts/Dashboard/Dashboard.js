@@ -8,7 +8,7 @@ import Layout from '../../components/Layout';
 import Typography from '../../components/Typography';
 import DeviceItem from './DeviceItem';
 
-const Dashboard = ({ devices, handleDeviceClick }) => {
+const Dashboard = ({ knownDevices, unknownDevices, handleDeviceClick }) => {
   return (
     <Layout>
       <div className="container">
@@ -30,9 +30,30 @@ const Dashboard = ({ devices, handleDeviceClick }) => {
           })}
         </div>
 
+        <div className="heading-text-container">
+          <Typography type="heading">Known Devices</Typography>
+        </div>
+
         <div className="items-container">
-          {devices &&
-            devices.map((item, index) => {
+          {knownDevices &&
+            knownDevices.map((item, index) => {
+              const isOdd = index % 2 !== 0;
+
+              return (
+                <div key={item.id} className={`item-container ${isOdd ? 'odd-item-container' : ''}`}>
+                  <DeviceItem {...item} handleClick={() => handleDeviceClick(item)} />
+                </div>
+              );
+            })}
+        </div>
+
+        <div className="heading-text-container">
+          <Typography type="heading">Unknown Devices</Typography>
+        </div>
+
+        <div className="items-container">
+          {unknownDevices &&
+            unknownDevices.map((item, index) => {
               const isOdd = index % 2 !== 0;
 
               return (
@@ -50,7 +71,12 @@ const Dashboard = ({ devices, handleDeviceClick }) => {
 };
 
 Dashboard.propTypes = {
-  devices: PropTypes.arrayOf(
+  knownDevices: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  ),
+  unknownDevices: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
     }),

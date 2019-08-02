@@ -15,14 +15,21 @@ const styles = css`
     display: flex;
     padding: ${rhythm.vt}px ${rhythm.hz}px;
     background-color: ${colors.lightGrey};
+    margin-bottom: ${rhythm.vt}px;
   }
 
   .header-item-container {
     text-align: left;
   }
 
+  .heading-text-container {
+    padding: ${rhythm.vt}px ${rhythm.hz}px;
+    background-color: ${colors.lightGrey};
+  }
+
   .items-container {
     overflow-y: scroll;
+    margin-bottom: ${rhythm.vt}px;
   }
 
   .item-container {
