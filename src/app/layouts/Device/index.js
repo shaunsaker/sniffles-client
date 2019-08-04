@@ -148,9 +148,9 @@ export class DeviceContainer extends React.Component {
     const timesSeenToday = logs
       ? logsArray.filter((item) => {
           const { timeStamp } = item;
-          const elapsedDays = getElapsedHours(timeStamp);
+          const elapsedHours = getElapsedHours(timeStamp);
 
-          return elapsedDays <= 1;
+          return elapsedHours <= 1;
         }).length
       : null;
     const totalTimesSeen = logs ? logsArray.length : null;
