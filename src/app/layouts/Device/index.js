@@ -123,7 +123,9 @@ export class DeviceContainer extends React.Component {
   render() {
     const { device, logs } = this.props;
     const { name, macAddress, dateCreated, lastSeen } = device;
-    const isOnline = getElapsedHours(lastSeen) <= 0.17; // last 10 min
+    const now = Date.now();
+    const difference = now - lastSeen;
+    const isOnline = difference / 1000 / 60 <= 10; // last 10 min
     const dateCreatedPretty = dateCreated ? getDateTime(dateCreated) : '';
     const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 

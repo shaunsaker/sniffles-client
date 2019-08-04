@@ -73,7 +73,9 @@ export class DashboardContainer extends React.Component {
       devices &&
       sortArrayOfObjectsByKey(convertObjectToArray(devices), 'lastSeen', true).map((item) => {
         const { id, name, macAddress, lastSeen } = item;
-        const isOnline = getElapsedHours(lastSeen) <= 0.17; // last 10 min
+        const now = Date.now();
+        const difference = now - lastSeen;
+        const isOnline = difference / 1000 / 60 <= 10; // last 10 min
         const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
         return {
