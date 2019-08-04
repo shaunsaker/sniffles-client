@@ -133,7 +133,7 @@ export class DeviceContainer extends React.Component {
      * Map to the object we need
      */
     const logsArray = logs
-      ? sortArrayOfObjectsByKey(convertObjectToArray(logs), 'timeStamp').map((item) => {
+      ? sortArrayOfObjectsByKey(convertObjectToArray(logs), 'date', true).map((item) => {
           const { date, rssi } = item;
           const prettyDate = getDateTime(date);
 
