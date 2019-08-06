@@ -21,7 +21,7 @@ const styles = css`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: ${rhythm.vt * 2}px ${rhythm.hz}px;
+    padding: ${rhythm.vt * 2}px ${rhythm.hz / 2}px;
     background-color: white;
     align-items: stretch;
   }

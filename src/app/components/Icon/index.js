@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import icons from './icons';
 import styles from './styles';
 
-const IconComponent = ({ name, size, color }) => {
+const IconComponent = ({ name, size, color, style }) => {
   let iconComponent;
 
   if (name) {
     const Icon = icons[name];
-    iconComponent = <Icon style={{ fill: color, fontSize: size }} />;
+    iconComponent = <Icon style={{ ...style, fill: color, fontSize: size }} />;
   }
 
   return (
@@ -25,6 +25,7 @@ IconComponent.propTypes = {
   name: PropTypes.string,
   size: PropTypes.number,
   color: PropTypes.string,
+  style: PropTypes.shape({}),
 };
 IconComponent.defaultProps = {};
 

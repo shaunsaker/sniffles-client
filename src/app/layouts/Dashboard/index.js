@@ -72,7 +72,7 @@ export class DashboardContainer extends React.Component {
     const devicesArray =
       devices &&
       sortArrayOfObjectsByKey(convertObjectToArray(devices), 'lastSeen', true).map((item) => {
-        const { id, name, macAddress, lastSeen } = item;
+        const { id, name, macAddress, lastSeen, isRecurring } = item;
         const now = Date.now();
         const difference = now - lastSeen;
         const isOnline = difference / 1000 / 60 <= 10; // last 10 min
@@ -83,6 +83,7 @@ export class DashboardContainer extends React.Component {
           name,
           macAddress,
           isOnline,
+          isRecurring,
           lastSeen: lastSeenPretty,
         };
       });

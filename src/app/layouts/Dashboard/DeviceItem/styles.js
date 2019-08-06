@@ -14,6 +14,9 @@ const styles = css`
 
   .item-container {
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .online-status-indicator-container {

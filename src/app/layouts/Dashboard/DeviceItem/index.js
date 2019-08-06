@@ -7,8 +7,11 @@ import { colors } from '../../../static/styles/styleConstants';
 import HEADERS from '../headers';
 
 import Typography from '../../../components/Typography';
+import Icon from '../../../components/Icon';
 
-const DeviceItem = ({ name, macAddress, isOnline, lastSeen, handleClick }) => {
+const DeviceItem = ({ name, macAddress, isOnline, isRecurring, lastSeen, handleClick }) => {
+  const recurringIconComponent = isRecurring && <Icon name="recurring" style={{ width: '100%' }} />;
+
   return (
     <ButtonBase onClick={handleClick} style={{ width: '100%' }}>
       <div className="container">
@@ -41,6 +44,10 @@ const DeviceItem = ({ name, macAddress, isOnline, lastSeen, handleClick }) => {
             {lastSeen}
           </Typography>
         </div>
+
+        <div style={HEADERS[4].style} className="item-container">
+          {recurringIconComponent}
+        </div>
       </div>
 
       <style jsx>{styles}</style>
@@ -52,6 +59,7 @@ DeviceItem.propTypes = {
   name: PropTypes.string,
   macAddress: PropTypes.string,
   isOnline: PropTypes.bool,
+  isRecurring: PropTypes.bool,
   lastSeen: PropTypes.string,
   handleClick: PropTypes.func,
 };

@@ -17,6 +17,7 @@ storiesOf('Components|DeviceItem', module)
       name={name}
       macAddress={macAddress}
       isOnline
+      isRecurring
       dateCreated={dateCreated}
       lastSeen={lastSeen}
       handleClick={handleClick}

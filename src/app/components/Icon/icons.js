@@ -1,7 +1,8 @@
 import React from 'react';
-import { KeyboardArrowRight } from '@material-ui/icons';
+import { Autorenew, KeyboardArrowRight } from '@material-ui/icons';
 
 const icons = {
+  recurring: (props) => <Autorenew {...props} />,
   'chevron-right': (props) => <KeyboardArrowRight {...props} />,
 };
 
