@@ -9,7 +9,6 @@ const headers = [
   { name: 'Name', style: { flex: 4, marginRight: rhythm.hz / 2 } },
   { name: 'Mac Address', style: { flex: 4, marginRight: rhythm.hz / 2 } },
   { name: 'Last Seen', style: { flex: 8, marginRight: rhythm.hz / 2 } },
-  { name: '', style: { flex: 1 } },
 ];
 
 export default headers;
