@@ -9,19 +9,7 @@ import HEADERS from './headers';
 import Layout from '../../components/Layout';
 import Typography from '../../components/Typography';
 
-const Device = ({
-  macAddress,
-  name,
-  isOnline,
-  dateCreated,
-  lastSeen,
-  timesSeenToday,
-  totalTimesSeen,
-  averageRssi,
-  logs,
-  editNameProps,
-  handleNameClick,
-}) => {
+const Device = ({ macAddress, name, isOnline, lastSeen, logs, editNameProps, handleNameClick }) => {
   const nameComponent = editNameProps ? (
     <form onSubmit={editNameProps.handleSubmit} className="editing-name-container">
       <TextField
@@ -64,18 +52,6 @@ const Device = ({
             <div className="value-text-container">{nameComponent}</div>
           </div>
 
-          <div className="row-container">
-            <div className="label-text-container">
-              <Typography type="paragraph" bold>
-                Date Created
-              </Typography>
-            </div>
-
-            <div className="value-text-container">
-              <Typography type="paragraph">{dateCreated}</Typography>
-            </div>
-          </div>
-
           <div className="row-container odd-row-container">
             <div className="label-text-container">
               <Typography type="paragraph" bold>
@@ -85,42 +61,6 @@ const Device = ({
 
             <div className="value-text-container">
               <Typography type="paragraph">{lastSeen}</Typography>
-            </div>
-          </div>
-
-          <div className="row-container">
-            <div className="label-text-container">
-              <Typography type="paragraph" bold>
-                Times Seen Today
-              </Typography>
-            </div>
-
-            <div className="value-text-container">
-              <Typography type="paragraph">{timesSeenToday}</Typography>
-            </div>
-          </div>
-
-          <div className="row-container odd-row-container">
-            <div className="label-text-container">
-              <Typography type="paragraph" bold>
-                Total Times Seen
-              </Typography>
-            </div>
-
-            <div className="value-text-container">
-              <Typography type="paragraph">{totalTimesSeen}</Typography>
-            </div>
-          </div>
-
-          <div className="row-container">
-            <div className="label-text-container">
-              <Typography type="paragraph" bold>
-                Average Rssi
-              </Typography>
-            </div>
-
-            <div className="value-text-container">
-              <Typography type="paragraph">{averageRssi}</Typography>
             </div>
           </div>
         </div>
@@ -151,10 +91,6 @@ const Device = ({
               return (
                 <div key={item.date} className={`row-container ${isOdd ? 'odd-row-container' : ''}`}>
                   <div style={HEADERS[0].style} className="item-container">
-                    <Typography type="paragraph">{item.rssi}</Typography>
-                  </div>
-
-                  <div style={HEADERS[1].style} className="item-container">
                     <Typography type="paragraph">{item.date}</Typography>
                   </div>
                 </div>
@@ -172,11 +108,7 @@ Device.propTypes = {
   macAddress: PropTypes.string,
   name: PropTypes.string,
   isOnline: PropTypes.bool,
-  dateCreated: PropTypes.string,
   lastSeen: PropTypes.string,
-  timesSeenToday: PropTypes.number,
-  totalTimesSeen: PropTypes.number,
-  averageRssi: PropTypes.number,
   logs: PropTypes.arrayOf(
     PropTypes.shape({
       date: PropTypes.string,

@@ -39,8 +39,7 @@ export class DeviceContainer extends React.Component {
     device: PropTypes.shape({
       name: PropTypes.string,
       macAddress: PropTypes.string,
-      dateCreated: PropTypes.number,
-      lastSeen: PropTypes.number,
+      date: PropTypes.number,
     }),
     logs: PropTypes.shape({
       date: PropTypes.number,
@@ -122,12 +121,11 @@ export class DeviceContainer extends React.Component {
 
   render() {
     const { device, logs } = this.props;
-    const { name, macAddress, dateCreated, lastSeen } = device;
+    const { name, macAddress, date } = device;
     const now = Date.now();
-    const difference = now - lastSeen;
+    const difference = now - date;
     const isOnline = difference / 1000 / 60 <= 10; // last 10 min
-    const dateCreatedPretty = dateCreated ? getDateTime(dateCreated) : '';
-    const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
+    const lastSeenPretty = date ? getDateTime(date) : '';
 
     /*
      * Convert the logs to array
@@ -136,36 +134,15 @@ export class DeviceContainer extends React.Component {
      */
     const logsArray = logs
       ? sortArrayOfObjectsByKey(convertObjectToArray(logs), 'date', true).map((item) => {
-          const { date, rssi } = item;
-          const prettyDate = getDateTime(date);
+          const { date: logDate } = item;
+          const prettyDate = getDateTime(logDate);
 
           return {
             date: prettyDate,
-            rssi,
-            timeStamp: date,
+            timeStamp: logDate,
           };
         })
       : [];
-
-    const timesSeenToday = logs
-      ? logsArray.filter((item) => {
-          const { timeStamp } = item;
-          const elapsedHours = getElapsedHours(timeStamp);
-
-          return elapsedHours <= 1;
-        }).length
-      : null;
-    const totalTimesSeen = logs ? logsArray.length : null;
-    const logsWithRssi = logsArray.filter((item) => item.rssi);
-    const averageRssi = logs
-      ? Math.round(
-          logsWithRssi.reduce((total, item) => {
-            const { rssi } = item;
-
-            return total + rssi;
-          }, 0) / logsWithRssi.length,
-        )
-      : null;
 
     /*
      * Attach editNameProps if no name or name was clicked
@@ -186,11 +163,7 @@ export class DeviceContainer extends React.Component {
         macAddress={macAddress}
         name={name}
         isOnline={isOnline}
-        dateCreated={dateCreatedPretty}
         lastSeen={lastSeenPretty}
-        timesSeenToday={timesSeenToday}
-        totalTimesSeen={totalTimesSeen}
-        averageRssi={averageRssi}
         logs={logsArray}
         editNameProps={editNameProps}
         handleNameClick={this.onNameClick}
