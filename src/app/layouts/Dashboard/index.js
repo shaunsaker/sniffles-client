@@ -71,7 +71,7 @@ export class DashboardContainer extends React.Component {
     const { devices } = this.props;
     const devicesArray =
       devices &&
-      sortArrayOfObjectsByKey(convertObjectToArray(devices), 'lastSeen', true).map((item) => {
+      sortArrayOfObjectsByKey(convertObjectToArray(devices), 'timestamp', true).map((item) => {
         const { id, name, macAddress, date } = item;
         const now = Date.now();
         const difference = now - date;
@@ -84,6 +84,7 @@ export class DashboardContainer extends React.Component {
           macAddress,
           isOnline,
           lastSeen: lastSeenPretty,
+          timestamp: date,
         };
       });
     const knownDevices = devices && devicesArray.filter((item) => item.name);
