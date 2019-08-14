@@ -40,6 +40,7 @@ export class DeviceContainer extends React.Component {
       name: PropTypes.string,
       macAddress: PropTypes.string,
       date: PropTypes.number,
+      isOnline: PropTypes.bool,
     }),
     logs: PropTypes.shape({
       date: PropTypes.number,
@@ -121,10 +122,7 @@ export class DeviceContainer extends React.Component {
 
   render() {
     const { device, logs } = this.props;
-    const { name, macAddress, date } = device;
-    const now = Date.now();
-    const difference = now - date;
-    const isOnline = difference / 1000 / 60 <= 10; // last 10 min
+    const { name, macAddress, date, isOnline } = device;
     const lastSeenPretty = date ? getDateTime(date) : '';
 
     /*
@@ -132,17 +130,17 @@ export class DeviceContainer extends React.Component {
      * Sort by dateCreated
      * Map to the object we need
      */
-    const logsArray = logs
-      ? sortArrayOfObjectsByKey(convertObjectToArray(logs), 'date', true).map((item) => {
-          const { date: logDate } = item;
-          const prettyDate = getDateTime(logDate);
+    const logsArray = logs ? convertObjectToArray(logs) : [];
+    const sortedLogs = sortArrayOfObjectsByKey(logsArray, 'date', true);
+    const parsedLogs = sortedLogs.map((item) => {
+      const { date: logDate, isOnline: logIsOnline } = item;
+      const prettyDate = getDateTime(logDate);
 
-          return {
-            date: prettyDate,
-            timeStamp: logDate,
-          };
-        })
-      : [];
+      return {
+        isOnline: logIsOnline,
+        date: prettyDate,
+      };
+    });
 
     /*
      * Attach editNameProps if no name or name was clicked
@@ -164,7 +162,7 @@ export class DeviceContainer extends React.Component {
         name={name}
         isOnline={isOnline}
         lastSeen={lastSeenPretty}
-        logs={logsArray}
+        logs={parsedLogs}
         editNameProps={editNameProps}
         handleNameClick={this.onNameClick}
       />

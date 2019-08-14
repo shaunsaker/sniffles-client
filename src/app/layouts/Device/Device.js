@@ -87,11 +87,16 @@ const Device = ({ macAddress, name, isOnline, lastSeen, logs, editNameProps, han
           {logs &&
             logs.map((item, index) => {
               const isOdd = index % 2 === 0;
+              const { isOnline: logIsOnline, date: logDate } = item;
 
               return (
-                <div key={item.date} className={`row-container ${isOdd ? 'odd-row-container' : ''}`}>
+                <div key={logDate} className={`row-container ${isOdd ? 'odd-row-container' : ''}`}>
                   <div style={HEADERS[0].style} className="item-container">
-                    <Typography type="paragraph">{item.date}</Typography>
+                    <div className={`online-status-indicator ${logIsOnline ? 'online' : ''}`} />
+                  </div>
+
+                  <div style={HEADERS[1].style} className="item-container">
+                    <Typography type="paragraph">{logDate}</Typography>
                   </div>
                 </div>
               );
