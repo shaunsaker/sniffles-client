@@ -133,12 +133,14 @@ export class DeviceContainer extends React.Component {
     const logsArray = logs ? convertObjectToArray(logs) : [];
     const sortedLogs = sortArrayOfObjectsByKey(logsArray, 'date', true);
     const parsedLogs = sortedLogs.map((item) => {
-      const { date: logDate, isOnline: logIsOnline } = item;
+      const { date: logDate, isOnline: logIsOnline, rssi, bssid } = item;
       const prettyDate = getDateTime(logDate);
 
       return {
         isOnline: logIsOnline,
         date: prettyDate,
+        rssi,
+        bssid,
       };
     });
 

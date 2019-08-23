@@ -87,7 +87,7 @@ const Device = ({ macAddress, name, isOnline, lastSeen, logs, editNameProps, han
           {logs &&
             logs.map((item, index) => {
               const isOdd = index % 2 === 0;
-              const { isOnline: logIsOnline, date: logDate } = item;
+              const { isOnline: logIsOnline, date: logDate, bssid, rssi } = item;
 
               return (
                 <div key={logDate} className={`row-container ${isOdd ? 'odd-row-container' : ''}`}>
@@ -97,6 +97,14 @@ const Device = ({ macAddress, name, isOnline, lastSeen, logs, editNameProps, han
 
                   <div style={HEADERS[1].style} className="item-container">
                     <Typography type="paragraph">{logDate}</Typography>
+                  </div>
+
+                  <div style={HEADERS[2].style} className="item-container">
+                    <Typography type="paragraph">{bssid}</Typography>
+                  </div>
+
+                  <div style={HEADERS[3].style} className="item-container">
+                    <Typography type="paragraph">{rssi}</Typography>
                   </div>
                 </div>
               );

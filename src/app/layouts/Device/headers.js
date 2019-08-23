@@ -11,7 +11,15 @@ const headers = [
   },
   {
     name: 'Date',
-    style: { flex: 8 },
+    style: { flex: 8, marginRight: rhythm.hz / 2 },
+  },
+  {
+    name: 'BSSID',
+    style: { flex: 4, marginRight: rhythm.hz / 2 },
+  },
+  {
+    name: 'RSSI',
+    style: { flex: 2 },
   },
 ];
 
