@@ -39,7 +39,7 @@ export class DeviceContainer extends React.Component {
     device: PropTypes.shape({
       name: PropTypes.string,
       macAddress: PropTypes.string,
-      date: PropTypes.number,
+      lastSeen: PropTypes.number,
       isOnline: PropTypes.bool,
     }),
     logs: PropTypes.shape({
@@ -122,8 +122,8 @@ export class DeviceContainer extends React.Component {
 
   render() {
     const { device, logs } = this.props;
-    const { name, macAddress, date, isOnline } = device;
-    const lastSeenPretty = date ? getDateTime(date) : '';
+    const { name, macAddress, lastSeen, isOnline } = device;
+    const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
     /*
      * Convert the logs to array

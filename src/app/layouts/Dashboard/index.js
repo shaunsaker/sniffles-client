@@ -72,8 +72,8 @@ export class DashboardContainer extends React.Component {
     const devicesArray = convertObjectToArray(devices);
     const sortedDevices = sortArrayOfObjectsByKey(devicesArray, 'date', true);
     const parsedDevices = sortedDevices.map((item) => {
-      const { id, name, macAddress, date, isOnline } = item;
-      const lastSeenPretty = date ? getDateTime(date) : '';
+      const { id, name, macAddress, lastSeen, isOnline } = item;
+      const lastSeenPretty = lastSeen ? getDateTime(lastSeen) : '';
 
       return {
         id,
