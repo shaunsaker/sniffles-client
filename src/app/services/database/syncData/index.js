@@ -5,9 +5,19 @@ export default ({ url, queries }, callback) => {
     let ref = await getRef(url);
 
     if (queries) {
-      const { orderByChild, equalTo } = queries;
+      const { orderByChild, equalTo, limit } = queries;
 
-      ref = ref.orderByChild(orderByChild).equalTo(equalTo);
+      if (orderByChild) {
+        ref = ref.orderByChild(orderByChild);
+      }
+
+      if (equalTo) {
+        ref = ref.equalTo(equalTo);
+      }
+
+      if (limit) {
+        ref = ref.limitToLast(limit);
+      }
     }
 
     const unsubscribe = ref.on(

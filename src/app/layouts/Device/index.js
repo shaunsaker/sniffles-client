@@ -84,6 +84,7 @@ export class DeviceContainer extends React.Component {
       queries: {
         orderByChild: 'macAddress',
         equalTo: deviceId,
+        limit: 100,
       },
       nextActions: [
         {
